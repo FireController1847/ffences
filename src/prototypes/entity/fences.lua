@@ -4,6 +4,42 @@ local hit_effects = require("__base__.prototypes.entity.hit-effects")
 -- Merge Group Reservations
 local wooden_fence_merge_group = 24
 
+-- Remnants Prototype Definitions
+data:extend({
+    {
+        -- Prototype
+        name= "wooden-fence-remnants",
+        order = "a-a-a",
+        subgroup = "defensive-structure-remnants",
+        type = "corpse",
+
+        -- EntityPrototype
+        collision_box = {{-0.4, -0.4}, {0.4, 0.4}},
+        flags = {"placeable-neutral", "not-on-map"},
+        hidden_in_factoriopedia = true,
+        icon = "__ffences__/graphics/icons/wooden-fence.png",
+        localised_name = {"remnant-name", {"entity-name.wooden-fence"}},
+        selectable_in_game = false,
+        selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
+
+        -- CorpsePrototype
+        animation = make_rotated_animation_variations_from_sheet(4, {
+            filename = "__ffences__/graphics/entity/wooden-fence/wooden-fence-remnants.png",
+            width = 118,
+            height = 118,
+            line_length = 1,
+            direction_count = 1,
+            shift = util.by_pixel(3, 7.5),
+            scale = 0.5
+        }),
+        expires = false,
+        final_render_layer = "remnants",
+        remove_on_tile_placement = false,
+        time_before_removed = 60 * 60 * 5, -- 5 minutes
+    }
+})
+
+-- Wall Prototype Definitions
 data:extend({
     {
         -- Prototype
@@ -23,7 +59,7 @@ data:extend({
         selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
 
         -- EntityWithHealthPrototype
-        corpse = "wall-remnants", -- TODO: custom corpse
+        corpse = "wooden-fence-remnants",
         damaged_trigger_effect = hit_effects.entity(),
         dying_explosion = "wooden-chest-explosion",
         max_health = 15,

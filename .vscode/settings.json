@@ -8,6 +8,7 @@
         "game",
         "serpent",
         "storage",
-        "helpers"
+        "helpers",
+        "make_rotated_animation_variations_from_sheet"
     ]
 }
