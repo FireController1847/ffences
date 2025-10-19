@@ -1,5 +1,4 @@
 {
-    "$schema": "https://cdn.firecontroller.dev/schema/factorio/modinfoschema.json",
     "name": "ffences",
     "version": "1.0.0",
     "title": "__LOCALIZED_VALUE__",
