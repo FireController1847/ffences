@@ -46,5 +46,29 @@ data:extend({
                 amount = 1
             }
         }
+    },
+    {
+        -- Prototype
+        name = "steel-fence",
+        type = "recipe",
+
+        -- RecipePrototype
+        allow_quality = false,
+        enabled = true,
+        energy_required = 0.5,
+        ingredients = {
+            {
+                type = "item",
+                name = "steel-plate",
+                amount = 5
+            }
+        },
+        results = {
+            {
+                type = "item",
+                name = "steel-fence",
+                amount = 1
+            }
+        }
     }
 });

@@ -5,13 +5,15 @@ local first_tick = true
 --]]
 local function initialize_storage()
     storage.ffences_ifro = storage.ffences_ifro or {} -- Iron Fence Render Object IDs
+    storage.ffences_sfro = storage.ffences_sfro or {} -- Steel Fence Render Object IDs
     storage.ffences_ifruq = storage.ffences_ifruq or {} -- Iron Fence Render Update Queue
+    storage.ffences_sfruq = storage.ffences_sfruq or {} -- Steel Fence Render Update Queue
 end
 
 --[[
-    Iron fence graphic handlers.
+    Connected fence graphic handlers.
 --]]
-local function iron_fence_update_data_from_entity(entity, level, previous)
+local function update_data_from_entity(entity, level, previous)
     local data = {}
     data.entity = entity
     data.unit_number = entity.unit_number
@@ -32,8 +34,8 @@ end
 --     surface = <index>,
 --     level = <level>
 -- }
-local function update_iron_fence_graphics(data)
-    local animation = "iron-fence-single"
+local function update_connected_fence_graphics(data, animation_base, entity_name)
+    local animation = animation_base .. "-single"
     local variant_count = 5
     local variant = (data.unit_number + math.floor(data.position.x * 31 + data.position.y * 17)) % variant_count
 
@@ -47,7 +49,7 @@ local function update_iron_fence_graphics(data)
     -- Validate neighbors
     local neighbors = data.neighbours
     local function is_ours(entity)
-        return entity and entity.valid and entity.name == "iron-fence"
+        return entity and entity.valid and entity.name == entity_name
     end
     local north = is_ours(neighbors.north)
     local east = is_ours(neighbors.east)
@@ -144,7 +146,7 @@ local function update_iron_fence_graphics(data)
                 }
                 storage.ffences_ifro[data.unit_number] = ro.id
             else
-                ro.animation = "iron-fence-single"
+                ro.animation = animation
                 ro.animation_offset = 0
             end
         end)
@@ -167,28 +169,44 @@ local function update_iron_fence_graphics(data)
     -- Update immediate neighbors if top_level is true
     if data.level <= 3 then
         if north and neighbors.north.unit_number ~= data.previous then
-            update_iron_fence_graphics(iron_fence_update_data_from_entity(neighbors.north, data.level + 1, data.unit_number))
+            update_connected_fence_graphics(update_data_from_entity(neighbors.north, data.level + 1, data.unit_number), animation_base, entity_name)
         end
         if east and neighbors.east.unit_number ~= data.previous then
-            update_iron_fence_graphics(iron_fence_update_data_from_entity(neighbors.east, data.level + 1, data.unit_number))
+            update_connected_fence_graphics(update_data_from_entity(neighbors.east, data.level + 1, data.unit_number), animation_base, entity_name)
         end
         if south and neighbors.south.unit_number ~= data.previous then
-            update_iron_fence_graphics(iron_fence_update_data_from_entity(neighbors.south, data.level + 1, data.unit_number))
+            update_connected_fence_graphics(update_data_from_entity(neighbors.south, data.level + 1, data.unit_number), animation_base, entity_name)
         end
         if west and neighbors.west.unit_number ~= data.previous then
-            update_iron_fence_graphics(iron_fence_update_data_from_entity(neighbors.west, data.level + 1, data.unit_number))
+            update_connected_fence_graphics(update_data_from_entity(neighbors.west, data.level + 1, data.unit_number), animation_base, entity_name)
         end
     end
 end
 
+--[[
+    Iron fence event hooks.
+--]]
 local function on_iron_fence_built(entity)
     -- Update graphics
-    storage.ffences_ifruq[entity.unit_number] = iron_fence_update_data_from_entity(entity, 1, nil)
+    storage.ffences_ifruq[entity.unit_number] = update_data_from_entity(entity, 1, nil)
 end
 
 local function on_iron_fence_removed(entity)
     -- Update graphics
-    storage.ffences_ifruq[entity.unit_number] = iron_fence_update_data_from_entity(entity, 1, nil)
+    storage.ffences_ifruq[entity.unit_number] = update_data_from_entity(entity, 1, nil)
+end
+
+--[[
+    Steel fence event hooks.
+--]]
+local function on_steel_fence_built(entity)
+    -- Update graphics
+    storage.ffences_sfruq[entity.unit_number] = update_data_from_entity(entity, 1, nil)
+end
+
+local function on_steel_fence_removed(entity)
+    -- Update graphics
+    storage.ffences_sfruq[entity.unit_number] = update_data_from_entity(entity, 1, nil)
 end
 
 --[[
@@ -212,6 +230,8 @@ script.on_event({ defines.events.on_built_entity, defines.events.script_raised_b
     -- Pass entity build events to their respective handlers
     if entity.name == "iron-fence" then
         on_iron_fence_built(entity)
+    elseif entity.name == "steel-fence" then
+        on_steel_fence_built(entity)
     end
 end)
 
@@ -222,6 +242,8 @@ script.on_event({ defines.events.on_player_mined_entity, defines.events.on_entit
     -- Pass entity removal events to their respective handlers
     if entity.name == "iron-fence" then
         on_iron_fence_removed(entity)
+    elseif entity.name == "steel-fence" then
+        on_steel_fence_removed(entity)
     end
 end)
 
@@ -232,11 +254,11 @@ script.on_event(defines.events.on_tick, function(event)
         initialize_storage()
     end
 
-    -- Process queued fence updates
+    -- Process queued iron fence updates
     local remove_list = {}
     for unit_number, data in pairs(storage.ffences_ifruq) do
         local ok, error = pcall(function()
-            update_iron_fence_graphics(data)
+            update_connected_fence_graphics(data, "iron-fence", "iron-fence")
         end)
         if not ok then
             game.print("Error updating iron fence graphics for unit number " .. unit_number .. ": " .. error)
@@ -244,8 +266,25 @@ script.on_event(defines.events.on_tick, function(event)
         table.insert(remove_list, unit_number)
     end
 
-    -- Remove after iteration (safe)
+    -- Remove iron fence after iteration (safe)
     for _, unit_number in ipairs(remove_list) do
         storage.ffences_ifruq[unit_number] = nil
+    end
+
+    -- Process queued steel fence updates
+    remove_list = {}
+    for unit_number, data in pairs(storage.ffences_sfruq) do
+        local ok, error = pcall(function()
+            update_connected_fence_graphics(data, "steel-fence", "steel-fence")
+        end)
+        if not ok then
+            game.print("Error updating steel fence graphics for unit number " .. unit_number .. ": " .. error)
+        end
+        table.insert(remove_list, unit_number)
+    end
+
+    -- Remove steel fence after iteration (safe)
+    for _, unit_number in ipairs(remove_list) do
+        storage.ffences_sfruq[unit_number] = nil
     end
 end)

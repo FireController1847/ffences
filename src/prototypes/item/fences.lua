@@ -22,15 +22,31 @@ data:extend({
         type = "item",
         name = "iron-fence",
         localised_description = {"item-description.iron-fence"},
-        order = "a[wooden-fence]-a[iron-fence]",
+        order = "a[stone-wall]-b[iron-fence]",
         subgroup = "ffences",
 
         -- ItemPrototype
         stack_size = 100,
-        drop_sound = item_sounds.wood_inventory_move,
+        drop_sound = item_sounds.metal_small_inventory_move,
         icon = "__ffences__/graphics/icons/iron-fence.png",
-        inventory_move_sound = item_sounds.wood_inventory_move,
-        pick_sound = item_sounds.wood_inventory_pickup,
+        inventory_move_sound = item_sounds.metal_small_inventory_move,
+        pick_sound = item_sounds.metal_small_inventory_pickup,
         place_result = "iron-fence"
     },
+    {
+        -- Prototype
+        type = "item",
+        name = "steel-fence",
+        localised_description = {"item-description.steel-fence"},
+        order = "a[stone-wall]-c[steel-fence]",
+        subgroup = "ffences",
+
+        -- ItemPrototype
+        stack_size = 100,
+        drop_sound = item_sounds.metal_large_inventory_move,
+        icon = "__ffences__/graphics/icons/steel-fence.png",
+        inventory_move_sound = item_sounds.metal_large_inventory_move,
+        pick_sound = item_sounds.metal_large_inventory_pickup,
+        place_result = "steel-fence"
+    }
 })
