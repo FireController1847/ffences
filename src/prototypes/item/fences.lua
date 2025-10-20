@@ -16,5 +16,21 @@ data:extend({
         inventory_move_sound = item_sounds.wood_inventory_move,
         pick_sound = item_sounds.wood_inventory_pickup,
         place_result = "wooden-fence"
-    }
+    },
+    {
+        -- Prototype
+        type = "item",
+        name = "iron-fence",
+        localised_description = {"item-description.iron-fence"},
+        order = "a[wooden-fence]-a[iron-fence]",
+        subgroup = "ffences",
+
+        -- ItemPrototype
+        stack_size = 100,
+        drop_sound = item_sounds.wood_inventory_move,
+        icon = "__ffences__/graphics/icons/iron-fence.png",
+        inventory_move_sound = item_sounds.wood_inventory_move,
+        pick_sound = item_sounds.wood_inventory_pickup,
+        place_result = "iron-fence"
+    },
 })

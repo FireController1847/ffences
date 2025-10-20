@@ -22,5 +22,29 @@ data:extend({
                 amount = 1
             }
         }
+    },
+    {
+        -- Prototype
+        name = "iron-fence",
+        type = "recipe",
+
+        -- RecipePrototype
+        allow_quality = false,
+        enabled = true,
+        energy_required = 0.5,
+        ingredients = {
+            {
+                type = "item",
+                name = "iron-plate",
+                amount = 5
+            }
+        },
+        results = {
+            {
+                type = "item",
+                name = "iron-fence",
+                amount = 1
+            }
+        }
     }
 });
