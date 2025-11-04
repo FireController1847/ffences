@@ -124,19 +124,19 @@ data:extend({
                 layers = {{
                     filename = "__ffences__/graphics/entity/wooden-fence/wooden-fence-single.png",
                     priority = "extra-high",
-                    width = 19,
-                    height = 77,
+                    width = 18,
+                    height = 76,
                     variation_count = 5,
                     line_length = 5,
-                    shift = util.by_pixel(0, -3.25),
+                    shift = util.by_pixel(0, -4),
                     scale = 0.5
                 }, {
                     filename = "__ffences__/graphics/entity/wooden-fence/wooden-fence-single-shadow.png",
                     priority = "extra-high",
                     width = 86,
-                    height = 60,
+                    height = 57,
                     repeat_count = 5,
-                    shift = util.by_pixel(17.51, 25.5),
+                    shift = util.by_pixel(16.80, 24.50),
                     draw_as_shadow = true,
                     scale = 0.5
                 }}
@@ -145,19 +145,19 @@ data:extend({
                 layers = {{
                     filename = "__ffences__/graphics/entity/wooden-fence/wooden-fence-vertical.png",
                     priority = "extra-high",
-                    width = 17,
-                    height = 128,
+                    width = 18,
+                    height = 123,
                     variation_count = 5,
                     line_length = 5,
-                    shift = util.by_pixel(0, 10),
+                    shift = util.by_pixel(0, 7.75),
                     scale = 0.5
                 }, {
                     filename = "__ffences__/graphics/entity/wooden-fence/wooden-fence-vertical-shadow.png",
                     priority = "extra-high",
                     width = 86,
-                    height = 113,
+                    height = 101,
                     repeat_count = 5,
-                    shift = util.by_pixel(17.93, 39.25),
+                    shift = util.by_pixel(17.72, 33.75),
                     draw_as_shadow = true,
                     scale = 0.5
                 }}
@@ -166,19 +166,19 @@ data:extend({
                 layers = {{
                     filename = "__ffences__/graphics/entity/wooden-fence/wooden-fence-horizontal.png",
                     priority = "extra-high",
-                    width = 67,
-                    height = 77,
+                    width = 66,
+                    height = 78,
                     variation_count = 5,
                     line_length = 5,
-                    shift = util.by_pixel(0, -3.25),
+                    shift = util.by_pixel(0, -3.50),
                     scale = 0.5
                 }, {
                     filename = "__ffences__/graphics/entity/wooden-fence/wooden-fence-horizontal-shadow.png",
                     priority = "extra-high",
-                    width = 124,
-                    height = 66,
+                    width = 122,
+                    height = 60,
                     repeat_count = 5,
-                    shift = util.by_pixel(16.93, 27),
+                    shift = util.by_pixel(14.64, 24),
                     draw_as_shadow = true,
                     scale = 0.5
                 }}
@@ -187,19 +187,19 @@ data:extend({
                 layers = {{
                     filename = "__ffences__/graphics/entity/wooden-fence/wooden-fence-ending-right.png",
                     priority = "extra-high",
-                    width = 42,
+                    width = 43,
                     height = 77,
                     variation_count = 5,
                     line_length = 5,
-                    shift = util.by_pixel(5, -3.25),
+                    shift = util.by_pixel(5.25, -4),
                     scale = 0.5
                 }, {
                     filename = "__ffences__/graphics/entity/wooden-fence/wooden-fence-ending-right-shadow.png",
                     priority = "extra-high",
-                    width = 104,
-                    height = 65,
+                    width = 103,
+                    height = 60,
                     repeat_count = 5,
-                    shift = util.by_pixel(21.51, 26.75),
+                    shift = util.by_pixel(20.97, 24.50),
                     draw_as_shadow = true,
                     scale = 0.5
                 }}
@@ -208,19 +208,19 @@ data:extend({
                 layers = {{
                     filename = "__ffences__/graphics/entity/wooden-fence/wooden-fence-ending-left.png",
                     priority = "extra-high",
-                    width = 42,
+                    width = 43,
                     height = 77,
                     variation_count = 5,
                     line_length = 5,
-                    shift = util.by_pixel(-5, -3.25),
+                    shift = util.by_pixel(-5.25, -4),
                     scale = 0.5
                 }, {
                     filename = "__ffences__/graphics/entity/wooden-fence/wooden-fence-ending-left-shadow.png",
                     priority = "extra-high",
-                    width = 109,
-                    height = 65,
+                    width = 108,
+                    height = 60,
                     repeat_count = 5,
-                    shift = util.by_pixel(12.01, 26.75),
+                    shift = util.by_pixel(10.71, 24.50),
                     draw_as_shadow = true,
                     scale = 0.5
                 }}
@@ -229,19 +229,19 @@ data:extend({
                 layers = {{
                     filename = "__ffences__/graphics/entity/wooden-fence/wooden-fence-corner-right.png",
                     priority = "extra-high",
-                    width = 40,
-                    height = 115,
+                    width = 43,
+                    height = 123,
                     variation_count = 5,
                     line_length = 5,
-                    shift = util.by_pixel(6, 8.25),
+                    shift = util.by_pixel(5.25, 7.75),
                     scale = 0.5
                 }, {
                     filename = "__ffences__/graphics/entity/wooden-fence/wooden-fence-corner-right-shadow.png",
                     priority = "extra-high",
-                    width = 98,
-                    height = 99,
+                    width = 102,
+                    height = 101,
                     repeat_count = 5,
-                    shift = util.by_pixel(20.10, 36.25),
+                    shift = util.by_pixel(21.72, 34.75),
                     draw_as_shadow = true,
                     scale = 0.5
                 }}
@@ -250,19 +250,19 @@ data:extend({
                 layers = {{
                     filename = "__ffences__/graphics/entity/wooden-fence/wooden-fence-corner-left.png",
                     priority = "extra-high",
-                    width = 44,
-                    height = 122,
+                    width = 43,
+                    height = 123,
                     variation_count = 5,
                     line_length = 5,
-                    shift = util.by_pixel(-7, 9.50),
+                    shift = util.by_pixel(-5.25, 7.75),
                     scale = 0.5
                 }, {
                     filename = "__ffences__/graphics/entity/wooden-fence/wooden-fence-corner-left-shadow.png",
                     priority = "extra-high",
-                    width = 112,
-                    height = 104,
+                    width = 108,
+                    height = 101,
                     repeat_count = 5,
-                    shift = util.by_pixel(11.76, 38),
+                    shift = util.by_pixel(11, 34),
                     draw_as_shadow = true,
                     scale = 0.5
                 }}
@@ -283,19 +283,19 @@ data:extend({
                 layers = {{
                     filename = "__ffences__/graphics/entity/wooden-fence/wooden-fence-t-up.png",
                     priority = "extra-high",
-                    width = 67,
-                    height = 134,
+                    width = 64,
+                    height = 123,
                     variation_count = 5,
                     line_length = 5,
-                    shift = util.by_pixel(0, 10.5),
+                    shift = util.by_pixel(0, 7),
                     scale = 0.5
                 }, {
                     filename = "__ffences__/graphics/entity/wooden-fence/wooden-fence-t-up-shadow.png",
                     priority = "extra-high",
-                    width = 123,
-                    height = 112,
+                    width = 124,
+                    height = 101,
                     repeat_count = 5,
-                    shift = util.by_pixel(14.68, 38),
+                    shift = util.by_pixel(14.56, 33.25),
                     draw_as_shadow = true,
                     scale = 0.5
                 }}
