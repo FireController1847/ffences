@@ -25,6 +25,35 @@ data:extend({
     },
     {
         -- Prototype
+        name = "wooden-gate",
+        type = "recipe",
+
+        -- RecipePrototype
+        allow_quality = false,
+        enabled = true,
+        energy_required = 0.5,
+        ingredients = {
+            {
+                type = "item",
+                name = "wooden-fence",
+                amount = 1
+            },
+            {
+                type = "item",
+                name = "iron-plate",
+                amount = 2
+            }
+        },
+        results = {
+            {
+                type = "item",
+                name = "wooden-gate",
+                amount = 1
+            }
+        }
+    },
+    {
+        -- Prototype
         name = "iron-fence",
         type = "recipe",
 

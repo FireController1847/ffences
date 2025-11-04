@@ -80,7 +80,7 @@ data:extend({
 
 
 --[[
-    Wall prototype definitions.
+    Wall & gate prototype definitions.
 --]]
 data:extend({
     {
@@ -303,6 +303,42 @@ data:extend({
         },
         visual_merge_group = wooden_fence_merge_group
 
+    },
+    {
+        -- Prototype
+        name = "wooden-gate",
+        type = "gate",
+
+        -- EntityPrototype
+        close_sound = sounds.gate_close, -- TODO: custom sound
+        collision_box = {{-0.29, -0.29}, {0.29, 0.29}},
+        fast_replaceable_group = "wall",
+        flags = {"placeable-neutral", "placeable-player", "player-creation"},
+        icon = "__ffences__/graphics/icons/wooden-fence.png", -- TODO: custom icon
+        impact_category = "wood",
+        minable = { mining_time = 0.225, result = "wooden-gate" },
+        mined_sound = sounds.tree_mined, -- TODO: custom sound
+        open_sound = sounds.gate_open, -- TODO: custom sound
+        selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
+
+        -- EntityWithHealthPrototype
+        corpse = "wooden-fence-remnants", -- TODO: update
+        damaged_trigger_effect = hit_effects.entity(),
+        dying_explosion = "wooden-chest-explosion",
+        max_health = 20,
+        repair_sound = sounds.manual_repair,
+        resistances = {
+            { type = "physical", decrease = 0, percent = 4 },
+            { type = "impact", decrease = 14, percent = 7 }
+        },
+
+        -- GatePrototype
+        activation_distance = 3, -- TODO: larger for when i make the anim?
+        opening_speed = 0.0666666,
+        timeout_to_close = 5, -- TODO: larger for bigger gates?
+        closing_sound = sounds.gate_close, -- TODO: custom sound
+        fadeout_interval = 15,
+        opening_sound = sounds.gate_open -- TODO: custom sound
     },
     {
         -- Prototype

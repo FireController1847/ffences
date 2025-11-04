@@ -20,9 +20,25 @@ data:extend({
     {
         -- Prototype
         type = "item",
+        name = "wooden-gate",
+        localised_description = {"item-description.wooden-gate"},
+        order = "a[stone-wall]-b[wooden-gate]",
+        subgroup = "ffences",
+
+        -- ItemPrototype
+        stack_size = 100,
+        drop_sound = item_sounds.wood_inventory_move,
+        icon = "__ffences__/graphics/icons/wooden-fence.png", -- TODO: Change icon
+        inventory_move_sound = item_sounds.wood_inventory_move,
+        pick_sound = item_sounds.wood_inventory_pickup,
+        place_result = "wooden-gate"
+    },
+    {
+        -- Prototype
+        type = "item",
         name = "iron-fence",
         localised_description = {"item-description.iron-fence"},
-        order = "a[stone-wall]-b[iron-fence]",
+        order = "a[stone-wall]-c[iron-fence]",
         subgroup = "ffences",
 
         -- ItemPrototype
@@ -38,7 +54,7 @@ data:extend({
         type = "item",
         name = "steel-fence",
         localised_description = {"item-description.steel-fence"},
-        order = "a[stone-wall]-c[steel-fence]",
+        order = "a[stone-wall]-e[steel-fence]",
         subgroup = "ffences",
 
         -- ItemPrototype
