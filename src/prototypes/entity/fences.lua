@@ -119,6 +119,8 @@ data:extend({
             height = 64,
             scale = 0.5,
         },
+        visual_merge_group = wooden_fence_merge_group,
+
         pictures = {
             single = {
                 layers = {{
@@ -149,7 +151,7 @@ data:extend({
                     height = 123,
                     variation_count = 5,
                     line_length = 5,
-                    shift = util.by_pixel(0, 7.75),
+                    shift = util.by_pixel(0, 4.75),
                     scale = 0.5
                 }, {
                     filename = "__ffences__/graphics/entity/wooden-fence/wooden-fence-vertical-shadow.png",
@@ -299,9 +301,82 @@ data:extend({
                     draw_as_shadow = true,
                     scale = 0.5
                 }}
+            },
+            gate_connection_patch = {
+                north = {
+                    layers = {{
+                        filename = "__ffences__/graphics/entity/wooden-gate/wooden-gate-patch-north.png",
+                        priority = "extra-high",
+                        width = 12,
+                        height = 84,
+                        shift = util.by_pixel(0, -8),
+                        scale = 0.5
+                    }, {
+                        filename = "__ffences__/graphics/entity/wooden-gate/wooden-gate-patch-north-shadow.png",
+                        priority = "extra-high",
+                        width = 76,
+                        height = 68,
+                        shift = util.by_pixel(19, 14),
+                        draw_as_shadow = true,
+                        scale = 0.5
+                    }}
+                },
+                east = {
+                    layers = {{
+                        filename = "__ffences__/graphics/entity/wooden-gate/wooden-gate-patch-east.png",
+                        priority = "extra-high",
+                        width = 24,
+                        height = 67,
+                        shift = util.by_pixel(11, -1),
+                        scale = 0.5
+                    }, {
+                        filename = "__ffences__/graphics/entity/wooden-gate/wooden-gate-patch-east-shadow.png",
+                        priority = "extra-high",
+                        width = 81,
+                        height = 51,
+                        shift = util.by_pixel(26, 27),
+                        draw_as_shadow = true,
+                        scale = 0.5
+                    }}
+                },
+                south = {
+                    layers = {{
+                        filename = "__ffences__/graphics/entity/wooden-gate/wooden-gate-patch-south.png",
+                        priority = "extra-high",
+                        width = 12,
+                        height = 84,
+                        shift = util.by_pixel(-1, 10),
+                        scale = 0.5
+                    }, {
+                        filename = "__ffences__/graphics/entity/wooden-gate/wooden-gate-patch-south-shadow.png",
+                        priority = "extra-high",
+                        width = 76,
+                        height = 68,
+                        shift = util.by_pixel(18, 33),
+                        draw_as_shadow = true,
+                        scale = 0.5
+                    }}
+                },
+                west = {
+                    layers = {{
+                        filename = "__ffences__/graphics/entity/wooden-gate/wooden-gate-patch-west.png",
+                        priority = "extra-high",
+                        width = 24,
+                        height = 66,
+                        shift = util.by_pixel(-10, -1),
+                        scale = 0.5
+                    }, {
+                        filename = "__ffences__/graphics/entity/wooden-gate/wooden-gate-patch-west-shadow.png",
+                        priority = "extra-high",
+                        width = 80,
+                        height = 51,
+                        shift = util.by_pixel(5, 27),
+                        draw_as_shadow = true,
+                        scale = 0.5
+                    }}
+                }
             }
-        },
-        visual_merge_group = wooden_fence_merge_group
+        }
 
     },
     {
@@ -310,19 +385,19 @@ data:extend({
         type = "gate",
 
         -- EntityPrototype
-        close_sound = sounds.gate_close, -- TODO: custom sound
+        close_sound = { filename = "__base__/sound/wooden-chest-close.ogg", volume = 0.6 },
         collision_box = {{-0.29, -0.29}, {0.29, 0.29}},
         fast_replaceable_group = "wall",
         flags = {"placeable-neutral", "placeable-player", "player-creation"},
-        icon = "__ffences__/graphics/icons/wooden-fence.png", -- TODO: custom icon
+        icon = "__ffences__/graphics/icons/wooden-gate.png",
         impact_category = "wood",
         minable = { mining_time = 0.225, result = "wooden-gate" },
-        mined_sound = sounds.tree_mined, -- TODO: custom sound
-        open_sound = sounds.gate_open, -- TODO: custom sound
+        mined_sound = sounds.tree_mined,
+        open_sound = { filename = "__base__/sound/wooden-chest-open.ogg", volume = 0.6 },
         selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
 
         -- EntityWithHealthPrototype
-        corpse = "wooden-fence-remnants", -- TODO: update
+        corpse = "wooden-fence-remnants",
         damaged_trigger_effect = hit_effects.entity(),
         dying_explosion = "wooden-chest-explosion",
         max_health = 20,
@@ -333,12 +408,226 @@ data:extend({
         },
 
         -- GatePrototype
-        activation_distance = 3, -- TODO: larger for when i make the anim?
-        opening_speed = 0.0666666,
-        timeout_to_close = 5, -- TODO: larger for bigger gates?
+        activation_distance = 4,
+        opening_speed = 0.0444444,
+        timeout_to_close = 12,
         closing_sound = sounds.gate_close, -- TODO: custom sound
         fadeout_interval = 15,
-        opening_sound = sounds.gate_open -- TODO: custom sound
+        opening_sound = sounds.gate_open, -- TODO: custom sound
+
+        horizontal_animation = {
+            layers = {{
+                filename = "__ffences__/graphics/entity/wooden-gate/wooden-gate-horizontal-single.png",
+                priority = "extra-high",
+                width = 63,
+                height = 97,
+                line_length = 8,
+                frame_count = 16,
+                shift = util.by_pixel(0, 4),
+                scale = 0.5
+            }, {
+                filename = "__ffences__/graphics/entity/wooden-gate/wooden-gate-horizontal-single-shadow.png",
+                priority = "extra-high",
+                width = 125,
+                height = 83,
+                line_length = 8,
+                frame_count = 16,
+                draw_as_shadow = true,
+                shift = util.by_pixel(15, 31),
+                scale = 0.5
+            }}
+        },
+        horizontal_rail_animation_left = {
+            layers = {{
+                filename = "__ffences__/graphics/entity/wooden-gate/wooden-gate-horizontal-single.png",
+                priority = "extra-high",
+                width = 63,
+                height = 97,
+                line_length = 8,
+                frame_count = 16,
+                shift = util.by_pixel(0, 4),
+                scale = 0.5
+            }, {
+                filename = "__ffences__/graphics/entity/wooden-gate/wooden-gate-horizontal-single-shadow.png",
+                priority = "extra-high",
+                width = 125,
+                height = 83,
+                line_length = 8,
+                frame_count = 16,
+                draw_as_shadow = true,
+                shift = util.by_pixel(15, 31),
+                scale = 0.5
+            }}
+        },
+        horizontal_rail_animation_right = {
+            layers = {{
+                filename = "__ffences__/graphics/entity/wooden-gate/wooden-gate-horizontal-double.png",
+                priority = "extra-high",
+                width = 63,
+                height = 97,
+                line_length = 8,
+                frame_count = 16,
+                shift = util.by_pixel(0, 4),
+                scale = 0.5
+            }, {
+                filename = "__ffences__/graphics/entity/wooden-gate/wooden-gate-horizontal-double-shadow.png",
+                priority = "extra-high",
+                width = 128,
+                height = 84,
+                line_length = 8,
+                frame_count = 16,
+                draw_as_shadow = true,
+                shift = util.by_pixel(16, 32),
+                scale = 0.5
+            }}
+        },
+        vertical_animation = {
+            layers = {{
+                filename = "__ffences__/graphics/entity/wooden-gate/wooden-gate-vertical-single.png",
+                priority = "extra-high",
+                width = 88,
+                height = 122,
+                line_length = 8,
+                frame_count = 16,
+                shift = util.by_pixel(18.5, 2),
+                scale = 0.5
+            }, {
+                filename = "__ffences__/graphics/entity/wooden-gate/wooden-gate-vertical-single-shadow.png",
+                priority = "extra-high",
+                width = 151,
+                height = 107,
+                line_length = 8,
+                frame_count = 16,
+                draw_as_shadow = true,
+                shift = util.by_pixel(34, 29),
+                scale = 0.5
+            }}
+        },
+        vertical_rail_animation_left = {
+            layers = {{
+                filename = "__ffences__/graphics/entity/wooden-gate/wooden-gate-vertical-single.png",
+                priority = "extra-high",
+                width = 88,
+                height = 122,
+                line_length = 8,
+                frame_count = 16,
+                shift = util.by_pixel(18.5, 2),
+                scale = 0.5
+            }, {
+                filename = "__ffences__/graphics/entity/wooden-gate/wooden-gate-vertical-single-shadow.png",
+                priority = "extra-high",
+                width = 151,
+                height = 107,
+                line_length = 8,
+                frame_count = 16,
+                draw_as_shadow = true,
+                shift = util.by_pixel(34, 29),
+                scale = 0.5
+            }}
+        },
+        vertical_rail_animation_right = {
+            layers = {{
+                filename = "__ffences__/graphics/entity/wooden-gate/wooden-gate-vertical-double.png",
+                priority = "extra-high",
+                width = 88,
+                height = 117,
+                line_length = 8,
+                frame_count = 16,
+                shift = util.by_pixel(18.5, 2),
+                scale = 0.5
+            }, {
+                filename = "__ffences__/graphics/entity/wooden-gate/wooden-gate-vertical-double-shadow.png",
+                priority = "extra-high",
+                width = 150,
+                height = 97,
+                line_length = 8,
+                frame_count = 16,
+                draw_as_shadow = true,
+                shift = util.by_pixel(33, 26),
+                scale = 0.5
+            }}
+        }
+    },
+    {
+        -- Prototype
+        name = "wooden-gate-double",
+        type = "gate",
+
+        -- EntityPrototype
+        close_sound = { filename = "__base__/sound/wooden-chest-close.ogg", volume = 0.6 },
+        collision_box = {{-0.29, -0.29}, {0.29, 0.29}},
+        fast_replaceable_group = "wall",
+        flags = {"placeable-neutral", "placeable-player", "player-creation"},
+        icon = "__ffences__/graphics/icons/wooden-gate.png",
+        impact_category = "wood",
+        minable = { mining_time = 0.225, result = "wooden-gate" },
+        mined_sound = sounds.tree_mined,
+        open_sound = { filename = "__base__/sound/wooden-chest-open.ogg", volume = 0.6 },
+        selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
+
+        -- EntityWithHealthPrototype
+        corpse = "wooden-fence-remnants",
+        damaged_trigger_effect = hit_effects.entity(),
+        dying_explosion = "wooden-chest-explosion",
+        max_health = 20,
+        repair_sound = sounds.manual_repair,
+        resistances = {
+            { type = "physical", decrease = 0, percent = 4 },
+            { type = "impact", decrease = 14, percent = 7 }
+        },
+
+        -- GatePrototype
+        activation_distance = 4,
+        opening_speed = 0.0444444,
+        timeout_to_close = 12,
+        closing_sound = sounds.gate_close, -- TODO: custom sound
+        fadeout_interval = 15,
+        opening_sound = sounds.gate_open, -- TODO: custom sound
+
+        horizontal_animation = {
+            layers = {{
+                filename = "__ffences__/graphics/entity/wooden-gate/wooden-gate-horizontal-double.png",
+                priority = "extra-high",
+                width = 63,
+                height = 97,
+                line_length = 8,
+                frame_count = 16,
+                shift = util.by_pixel(0, 4),
+                scale = 0.5
+            }, {
+                filename = "__ffences__/graphics/entity/wooden-gate/wooden-gate-horizontal-double-shadow.png",
+                priority = "extra-high",
+                width = 128,
+                height = 84,
+                line_length = 8,
+                frame_count = 16,
+                draw_as_shadow = true,
+                shift = util.by_pixel(16, 32),
+                scale = 0.5
+            }}
+        },
+        vertical_animation = {
+            layers = {{
+                filename = "__ffences__/graphics/entity/wooden-gate/wooden-gate-vertical-double.png",
+                priority = "extra-high",
+                width = 88,
+                height = 117,
+                line_length = 8,
+                frame_count = 16,
+                shift = util.by_pixel(18.5, 2),
+                scale = 0.5
+            }, {
+                filename = "__ffences__/graphics/entity/wooden-gate/wooden-gate-vertical-double-shadow.png",
+                priority = "extra-high",
+                width = 150,
+                height = 97,
+                line_length = 8,
+                frame_count = 16,
+                draw_as_shadow = true,
+                shift = util.by_pixel(33, 26),
+                scale = 0.5
+            }}
+        }
     },
     {
         -- Prototype
@@ -380,6 +669,8 @@ data:extend({
             height = 64,
             scale = 0.5,
         },
+        visual_merge_group = iron_fence_merge_group,
+
         pictures = {
             single = {
                 layers = {{
@@ -549,8 +840,7 @@ data:extend({
                     scale = 0.5
                 }}
             }
-        },
-        visual_merge_group = iron_fence_merge_group
+        }
     },
     {
         -- Prototype
@@ -592,6 +882,8 @@ data:extend({
             height = 64,
             scale = 0.5,
         },
+        visual_merge_group = steel_fence_merge_group,
+
         pictures = {
             single = {
                 layers = {{
@@ -761,8 +1053,7 @@ data:extend({
                     scale = 0.5
                 }}
             }
-        },
-        visual_merge_group = steel_fence_merge_group
+        }
     }
 });
 

@@ -28,7 +28,7 @@ data:extend({
         -- ItemPrototype
         stack_size = 100,
         drop_sound = item_sounds.wood_inventory_move,
-        icon = "__ffences__/graphics/icons/wooden-fence.png", -- TODO: Change icon
+        icon = "__ffences__/graphics/icons/wooden-gate.png",
         inventory_move_sound = item_sounds.wood_inventory_move,
         pick_sound = item_sounds.wood_inventory_pickup,
         place_result = "wooden-gate"
